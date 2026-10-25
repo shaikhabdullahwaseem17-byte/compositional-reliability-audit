@@ -1,0 +1,21 @@
+{
+  "trial_rows": 336,
+  "gold_rows": 336,
+  "unique_trial_run_ids": 336,
+  "unique_gold_run_ids": 336,
+  "missing_raw_responses": 0,
+  "duplicate_trial_run_ids": 0,
+  "duplicate_gold_run_ids": 0,
+  "phase_counts": {
+    "COMPOSITION": 192,
+    "CALIBRATION": 144
+  },
+  "model_counts": {
+    "Model_A": 168,
+    "Model_B": 168
+  },
+  "comp_run_id_set_match_frozen": true,
+  "frozen_rows": 192,
+  "frozen_unique_run_ids": 192,
+  "frozen_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21"
+}
