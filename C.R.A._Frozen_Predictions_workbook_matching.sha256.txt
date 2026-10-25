@@ -1,0 +1,6 @@
+Researcher: Shaikh Abdullah Waseem
+Prediction file: C.R.O._Frozen_Predictions_workbook_matching.csv
+SHA-256: 0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21
+Frozen UTC: 2026-10-24T12:50:31+00:00
+Rows: 192
+Integrity note: this hash verifies file identity, not prospective timing.
