@@ -1,0 +1,3 @@
+Model,N,Strict_Schema_Valid_N,Strict_Schema_Valid_Rate,Node_Sequence_Correct_N,Node_Sequence_Correct_Rate,Step_Values_Correct_N,Step_Values_Correct_Rate,Final_Correct_N,Final_Correct_Rate,Exact_Success_N,Exact_Success_Rate
+Model_A,96,12,0.125,12,0.125,12,0.125,12,0.125,12,0.125
+Model_B,96,96,1.0,93,0.96875,82,0.8541666666666666,82,0.8541666666666666,82,0.8541666666666666
