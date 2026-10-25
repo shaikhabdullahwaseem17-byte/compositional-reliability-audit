@@ -16,7 +16,7 @@ The atom-product law did not consistently outperform stronger baselines in the 1
 
 - **[Essential Data & Prediction Freeze](Essential%20Data%20%26%20Prediction%20Freeze/README.md):** selected 192-row prediction file and its SHA-256 sidecar. The analyzed workbook is intentionally not published.
 - **[Analysis Code](Analysis%20Code/):** primary pipeline, independent oracle/scoring audit, exploratory calibration-only comparator, post-hoc sensitivity script, and dependency file.
-- **[Results & Verification](Results%20%26%20Verification/README.md):** aggregate tables, family-by-structure outcomes, bootstrap uncertainty, and integrity records.
+- **[Results & Verification](Results%20%26%20Verification/README.md):** aggregate tables, model-by-structure results, bootstrap uncertainty, and integrity records.
 - **[SHA256SUMS.txt](SHA256SUMS.txt):** checksums for the listed public release files; the manifest intentionally does not hash itself.
 
 ## Data availability and reproduction
