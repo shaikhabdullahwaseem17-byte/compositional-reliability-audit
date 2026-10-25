@@ -32,7 +32,7 @@ python -m pip install -r "Analysis Code/C.R.A._requirements.txt"
 Using a private local workbook path, run the primary analysis (do not regenerate the freeze):
 
 ```bash
-python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze --predictions "Essential Data & Prediction Freeze/Frozen_Predictions_workbook_matching.csv" --outdir analysis_output
+python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" --outdir analysis_output
 ```
 
 Then run the independent audit:
