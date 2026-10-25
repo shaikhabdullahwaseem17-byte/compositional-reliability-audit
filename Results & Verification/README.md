@@ -6,7 +6,6 @@ This directory contains aggregate result tables and selected audit records suppo
 
 - `predictor_metrics_by_model.csv` — Brier score, log loss, mean prediction, observed rate, and calibration gap for the candidate law and comparator baselines.
 - `outcomes_and_scores_by_model_structure.csv` — exact-success rates and proper scores by model alias and graph structure.
-- `family_level_outcomes.csv` — task-family by model/structure outcome summaries.
 - `calibration_by_operation.csv` — operation-level calibration estimates used by the candidate law.
 - `composition_component_metrics.csv` and `composition_filter_node_metrics.csv` — strict schema/component performance and aggregate FILTER_CHAR diagnostics.
 - `task_cluster_bootstrap_brier_diff.csv` and `task_cluster_bootstrap_success_ci.csv` — task-cluster uncertainty intervals.
