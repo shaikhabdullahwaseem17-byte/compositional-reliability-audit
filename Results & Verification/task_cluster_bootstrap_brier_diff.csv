@@ -1,0 +1,4 @@
+Model,Task_Clusters,Mean_Brier_Diff_Product_minus_Structure,Cluster_Bootstrap_95CI_L,Cluster_Bootstrap_95CI_U,Interpretation
+ALL_MODELS,12,0.010834486061798576,-0.017463473727882962,0.03498340714346369,positive = product law worse; negative = product law better
+Model_A,12,0.014473101962412221,-0.003925214647905455,0.030660470856256384,positive = product law worse; negative = product law better
+Model_B,12,0.007195870161184924,-0.04606275519765264,0.05039811429858604,positive = product law worse; negative = product law better
