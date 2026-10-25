@@ -1,26 +1,22 @@
-# Supporting Release — Scope and Safety
+# Supporting Release Scope and Safety
 
-This repository separates the analyzed data/freeze, executable analysis code, and results/verification so a reader can navigate the study without duplicating files.
+## Included
 
-## Publicly included supporting materials
+This public release includes the selected prediction freeze and hash sidecar; the primary analysis, independent oracle/scoring audit, calibration-only comparator and sensitivity scripts; dependency list; aggregate predictive, calibration, component, family-level and bootstrap result tables; integrity metadata; and documentation required to interpret the package.
 
-- Primary analysis code, independent oracle/scoring audit code, calibration-only comparator code, and dependency list in [Analysis Code](../Analysis%20Code/).
-- The selected 192-row frozen prediction file and its SHA-256 sidecar in [Essential Data & Prediction Freeze](../Essential%20Data%20%26%20Prediction%20Freeze/).
-- Aggregate predictive metrics, calibration tables, task-cluster uncertainty intervals, component metrics, integrity checks, and release-verification metadata in [Results & Verification](../Results%20%26%20Verification/).
-- Curated row-level diagnostic summaries in [Row-Level Audit](../Results%20%26%20Verification/Row-Level%20Audit/).
+## Intentionally excluded
 
-## Materials intentionally not copied into another duplicate folder
+- The `C.R.A._raw_analysis` workbook, at the researcher's explicit direction. It contains prompt text, raw model responses, oracle data and task-bank designs.
+- The alternate historical prediction freeze, which was superseded and not used for primary scoring.
+- Raw-response failure inventories and detailed filter-node audits that repeat response excerpts or reveal task-bank values.
+- Archived machine-specific run logs with environment-specific paths or detailed failure examples.
+- Research-paper PDF/DOCX, PDF README duplicate, ZIP archives, intermediate workbooks, and temporary validation files.
+- Any credential, private account information, or unrelated project artifacts.
 
-The analyzed workbook and primary freeze are already included in the repository's data section. This avoids maintaining duplicate copies that could drift apart. The alternate historical freeze, old workbook versions, report PDF/DOCX, ZIP packages, local machine paths, and unredacted personal sign-in timestamps are not included as extra copies.
+## Completeness statement
 
-## Raw-response and operational-data caution
+The checksum manifest at repository root covers the selected public release files (excluding the manifest itself). It does not imply that the local working folder is byte-for-byte mirrored. The workbook is not part of the public release; consequently the scripts require a researcher-held matching workbook for full execution.
 
-The workbook contains prompts, model responses, task-bank designs, and oracle information. These materials can expose the exact evaluation tasks and make them easier to copy or reproduce. The curated row-level failure inventory includes response prefixes and is therefore a deliberate disclosure of some task-level material. Do not add full raw-response dumps, credentials, private account data, or unreviewed machine logs to a public repository.
+## Limits
 
-## Reproduction and limits
-
-Use the selected freeze as published; do not regenerate it and then describe it as the original freeze. SHA-256 checks verify byte identity only. The missing row-level timestamps and exact model-version provenance limit chronology/source verification. The results do not validate the atom-product law: the primary pooled Brier score was worse than the operation-count and structure-specific baselines, and uncertainty intervals included zero.
-
-## Release completeness statement
-
-The repository includes the principal data/freeze, analysis scripts, aggregate result tables, integrity checks, and selected row-level diagnostics. It is not a byte-for-byte mirror of the local release folder: local run logs, environment-specific outputs, duplicate data files, and the nonessential PDF README are not copied wholesale. This is intentional to avoid publishing redundant, machine-specific, or raw-response-heavy artifacts without additional review.
+The source-data integrity record summarizes checks performed locally on the analyzed workbook before its explicit exclusion. SHA-256 validates byte identity, not data provenance or chronology. A manifest is only as useful as the correspondence between listed paths and committed files; the repository manifest is intended to be checked against the exact file bytes.
