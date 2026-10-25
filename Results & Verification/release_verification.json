@@ -12,7 +12,7 @@
   "machine_specific_run_logs_in_public_repository": false,
   "research_paper_pdf_or_docx_in_public_repository": false,
   "zip_archive_in_public_repository": false,
-  "public_materials": "Analysis scripts, dependency list, selected prediction freeze, aggregate result tables, family-by-structure summary, and integrity records.",
+  "public_materials": "Analysis scripts, dependency list, selected prediction freeze, aggregate result tables and integrity records.",
   "known_limitation": "The analysis scripts require a researcher-held, authorized analyzed workbook with the expected sheets/columns. That workbook is deliberately not published here.",
   "freeze_hash_note": "SHA-256 verifies file identity; it does not prove freeze chronology or prospective preregistration."
 }
