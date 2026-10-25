@@ -94,3 +94,8 @@ After publishing, replace the placeholder with the repository URL. If a version 
 ## Contact
 
 Use the researcher's preferred public contact method, if intentionally provided in the repository profile. Avoid adding private contact details to a public repository unless you explicitly want them public.
+
+
+## Section C — Results and verification
+
+The structured result tables and verification records are organized in [Results & Verification/](Results%20%26%20Verification/README.md). Start with its README, then use the CSV/JSON files for the primary predictor comparison, model-by-structure outcomes, operation-level calibration, clustered uncertainty intervals, the post-hoc embedded-JSON diagnostic, and integrity checks. The primary conclusion remains negative: the atom-product law did not outperform the stronger baselines consistently.
