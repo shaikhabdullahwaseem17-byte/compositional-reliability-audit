@@ -15,13 +15,13 @@ python -m pip install -r "Analysis Code/C.R.A._requirements.txt"
 Use the selected published predictions; do not run `--phase freeze` to recreate the original freeze.
 
 ```bash
-python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze --predictions "Essential Data & Prediction Freeze/Frozen_Predictions_workbook_matching.csv" --outdir analysis_output
+python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" --outdir analysis_output
 
 python "Analysis Code/C.R.A._independent_audit_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --outdir independent_audit_outputs
 
-python "Analysis Code/C.R.A._calibration_only_baseline.py" --analysis-dir analysis_output --predictions "Essential Data & Prediction Freeze/Frozen_Predictions_workbook_matching.csv" --outdir calibration_only_results
+python "Analysis Code/C.R.A._calibration_only_baseline.py" --analysis-dir analysis_output --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" --outdir calibration_only_results
 
-python "Analysis Code/C.R.A._sensitivity_and_lenient.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --predictions "Essential Data & Prediction Freeze/Frozen_Predictions_workbook_matching.csv" --outdir sensitivity_outputs
+python "Analysis Code/C.R.A._sensitivity_and_lenient.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" --outdir sensitivity_outputs
 ```
 
 The calibration-only comparator is exploratory, and the sensitivity script is post-hoc. Neither replaces the as-frozen primary analysis. The A0045 sensitivity record should not be silently substituted into the primary data.
