@@ -2,7 +2,7 @@
 
 ## Included
 
-This public release includes the selected prediction freeze and hash sidecar; the primary analysis, independent oracle/scoring audit, calibration-only comparator and sensitivity scripts; dependency list; aggregate predictive, calibration, component, family-level and bootstrap result tables; integrity metadata; and documentation required to interpret the package.
+This public release includes the selected prediction freeze and hash sidecar; the primary analysis, independent oracle/scoring audit, calibration-only comparator and sensitivity scripts; dependency list; aggregate predictive, calibration, component and bootstrap result tables; integrity metadata; and documentation required to interpret the package.
 
 ## Intentionally excluded
 
