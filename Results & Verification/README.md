@@ -27,3 +27,7 @@ The task-cluster bootstrap interval for the product-law minus structure-specific
 - Scripts and outputs should be interpreted alongside the limitations documented in the top-level README.
 
 All values in these tables are analysis outputs, not claims that the candidate law was validated.
+
+## Row-level diagnostics
+
+Curated row-identified composition failures and task-family/filter-node summaries are in [Row-Level Audit/](Row-Level%20Audit/README.md). The full analyzed workbook remains the authoritative source for raw responses and complete row-level scoring. The repository does not claim that the curated failure index is a complete substitute for that workbook.
