@@ -1,7 +1,7 @@
 {
   "release_name": "Compositional Reliability Audit — public supporting release",
   "release_date": "2026-10-25",
-  "primary_prediction_file": "Essential Data & Prediction Freeze/Frozen_Predictions_workbook_matching.csv",
+  "primary_prediction_file": "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv",
   "primary_prediction_rows": 192,
   "primary_prediction_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21",
   "source_workbook_in_public_repository": false,
