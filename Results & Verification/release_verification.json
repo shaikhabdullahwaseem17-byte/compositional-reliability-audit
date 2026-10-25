@@ -1,0 +1,13 @@
+{
+  "release_folder": "C.R.O._reproducibility_release",
+  "file_count_before_receipt_and_manifest": 30,
+  "primary_freeze_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21",
+  "primary_freeze_rows": 192,
+  "primary_freeze_hash_matches_expected": true,
+  "workbook_values_match_reference_except_four_dashboard_sign_in_redactions": true,
+  "unexpected_workbook_cell_differences": 0,
+  "credential_pattern_scan_findings": [],
+  "paper_pdf_included": false,
+  "paper_docx_included": false,
+  "zip_included": false
+}
