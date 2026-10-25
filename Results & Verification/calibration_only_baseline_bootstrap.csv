@@ -1,0 +1,2 @@
+N_Task_Families,Mean_Brier_Difference_Product_Minus_CalibrationOnly,CI95_Lower,CI95_Upper,Bootstrap_Replicates,Seed,Interpretation
+12,-0.0029908191696911175,-0.029460564364409976,0.018425594074584373,100000,20261025,Negative favors atom-product law; interval including zero means no clear difference.
