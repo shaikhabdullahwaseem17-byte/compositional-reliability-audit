@@ -30,4 +30,4 @@ All values in these tables are analysis outputs, not claims that the candidate l
 
 ## Row-level diagnostics
 
-Curated row-identified composition failures and task-family/filter-node summaries are in [Row-Level Audit/](Row-Level%20Audit/README.md). The full analyzed workbook remains the authoritative source for raw responses and complete row-level scoring. The repository does not claim that the curated failure index is a complete substitute for that workbook.
+Publication boundaries for row-level materials are documented in [Row-Level Audit/](Row-Level%20Audit/README.md). Full response-heavy row-level exports and machine-specific logs are intentionally not duplicated; use the analyzed workbook and scoring scripts when detailed inspection is necessary.
