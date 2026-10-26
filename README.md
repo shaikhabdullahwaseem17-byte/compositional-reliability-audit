@@ -1,4 +1,4 @@
-# Compositional Reliability Audit
+# **Compositional Reliability Audit**
 
 **Full title:** *Compositional Reliability Audit: Testing an Atom-Product Law for Exact Success on Structured Tasks* 
 **Researcher:** Shaikh Abdullah Waseem  
