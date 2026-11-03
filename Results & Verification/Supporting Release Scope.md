@@ -1,22 +1,22 @@
-# Supporting Release Scope and Safety
+# Supporting release scope
 
 ## Included
 
-This public release includes the selected prediction freeze and hash sidecar; the primary analysis, independent oracle/scoring audit, calibration-only comparator and sensitivity scripts; dependency list; aggregate predictive, calibration, component and bootstrap result tables; integrity metadata; and documentation required to interpret the package.
+The public repository contains the selected 192-row prediction freeze and hash sidecar; primary analysis pipeline; independent oracle/scoring audit; aggregate result-table builder; calibration-only comparator; post-hoc sensitivity diagnostics; dependencies; aggregate result tables; integrity records; and reproduction documentation.
 
-## Intentionally excluded
+## Excluded
 
-- The `C.R.A._raw_analysis` workbook, at the researcher's explicit direction. It contains prompt text, raw model responses, oracle data and task-bank designs.
-- The alternate historical prediction freeze, which was superseded and not used for primary scoring.
-- Raw-response failure inventories and detailed filter-node audits that repeat response excerpts or reveal task-bank values.
-- Archived machine-specific run logs with environment-specific paths or detailed failure examples.
-- Research-paper PDF/DOCX, PDF README duplicate, ZIP archives, intermediate workbooks, and temporary validation files.
-- Any credential, private account information, or unrelated project artifacts.
+- The analyzed Excel workbook, including prompts, raw model responses, oracle records, and task-bank details. It remains a separate researcher-held file.
+- The alternate historical prediction freeze.
+- Raw-response failure inventories, raw response excerpts, and detailed task-specific row-level audit exports.
+- Machine-specific run logs and intermediate local workbooks.
+- The full research paper PDF/DOCX and temporary ZIP/build artifacts.
+- Credentials, tokens, private account data, and unrelated project files.
 
-## Completeness statement
+## Reproduction boundary
 
-The checksum manifest at repository root covers the selected public release files (excluding the manifest itself). It does not imply that the local working folder is byte-for-byte mirrored. The workbook is not part of the public release; consequently the scripts require a researcher-held matching workbook for full execution.
+The public scripts require a researcher-held workbook with the documented sheets. The workbook is not needed to inspect the selected freeze or aggregate tables, but it is required to rerun scoring and oracle reconstruction. The release-table builder writes aggregate outputs only and does not copy the workbook or raw responses.
 
-## Limits
+## Interpretation limits
 
-The source-data integrity record summarizes checks performed locally on the analyzed workbook before its explicit exclusion. SHA-256 validates byte identity, not data provenance or chronology. A manifest is only as useful as the correspondence between listed paths and committed files; the repository manifest is intended to be checked against the exact file bytes.
+The checksum manifest verifies the committed public files. The prediction sidecar verifies the selected freeze's bytes. Neither checksum proves prospective timing. The source workbook lacks row-level run timestamps and exact per-response model-version fields, so those aspects of provenance cannot be independently established from the workbook.
