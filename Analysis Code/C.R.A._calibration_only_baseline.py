@@ -15,9 +15,9 @@ import numpy as np
 import pandas as pd
 
 ap = argparse.ArgumentParser(description="Calibration-only pooled-operation comparison")
-ap.add_argument("--analysis-dir", default="C.R.O._analysis_output", help="Output directory created by the primary analysis script")
-ap.add_argument("--predictions", default="C.R.O._Frozen_Predictions_workbook_matching.csv")
-ap.add_argument("--outdir", default="C.R.O._calibration_only_results")
+ap.add_argument("--analysis-dir", default="analysis_output", help="Output directory created by the primary analysis script")
+ap.add_argument("--predictions", default="Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv")
+ap.add_argument("--outdir", default="calibration_only_results")
 args = ap.parse_args()
 ANALYSIS = Path(args.analysis_dir)
 OUT = Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
@@ -67,8 +67,8 @@ for subset, g in [('ALL_MODELS', x), *[(m, g) for m, g in x.groupby('Model_Endpo
             'CalibrationGap': float(np.mean(p)-np.mean(y))
         })
 metrics = pd.DataFrame(rows)
-metrics.to_csv(OUT / 'C.R.O._calibration_only_baseline_metrics.csv', index=False)
-x.to_csv(OUT / 'C.R.O._calibration_only_baseline_predictions.csv', index=False)
+metrics.to_csv(OUT / 'C.R.A._calibration_only_baseline_metrics.csv', index=False)
+x.to_csv(OUT / 'C.R.A._calibration_only_baseline_predictions.csv', index=False)
 # Cluster bootstrap over the 12 Task_ID families, preserving all rows within a family.
 x['BrierDiff_ProductMinusCalibrationOnly'] = (
     (x['P_Independence_Law'] - x['Exact_Task_Success'])**2
@@ -86,7 +86,7 @@ boot = pd.DataFrame([{
     'Seed': 20261025,
     'Interpretation': 'Negative favors atom-product law; interval including zero means no clear difference.'
 }])
-boot.to_csv(OUT / 'C.R.O._calibration_only_baseline_bootstrap.csv', index=False)
+boot.to_csv(OUT / 'C.R.A._calibration_only_baseline_bootstrap.csv', index=False)
 print(metrics.to_string(index=False))
 print('\nCluster bootstrap:')
 print(boot.to_string(index=False))
