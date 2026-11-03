@@ -50,7 +50,7 @@ The calibration-only comparator is exploratory. The A0045 restoration and embedd
 
 Using the selected freeze and the analyzed workbook, the primary pipeline returns 336 scored rows, including 192 composition rows and 94 exact composition successes. The atom-product Brier score is 0.134732; structure-specific, operation-count, global, and graph-corrected scores are 0.123897, 0.122706, 0.123551, and 0.125725 respectively.
 
-The 5,000-replicate task-family bootstrap uses seed 20261023. It gives a mean Brier difference (product minus structure-specific) of 0.010834, with percentile interval [-0.017275, 0.035369]. The interval includes zero. The optional calibration-only comparator and 100,000-replicate bootstrap are produced by its own script.
+The archived task-family bootstrap table reports a mean Brier difference (product minus structure-specific) of 0.010834, with percentile interval [-0.017463, 0.034983] across 12 task families. The interval includes zero. The current aggregate-table builder records its own 5,000-replicate bootstrap (seed 20261023); compare regenerated values with the archived table rather than assuming the two are byte-identical. The optional calibration-only comparator and its 100,000-replicate bootstrap are produced by its own script.
 
 ## What can be reproduced from this repository alone
 
