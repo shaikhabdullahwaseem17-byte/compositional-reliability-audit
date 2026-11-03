@@ -1,72 +1,82 @@
-# **Compositional Reliability Audit**
+# Compositional Reliability Audit
 
-**Full title:** *Compositional Reliability Audit: Testing an Atom-Product Law for Exact Success on Structured Tasks* 
+**Full title:** *Compositional Reliability Audit: Testing an Atom-Product Law for Exact Success on Structured Tasks*  
 **Researcher:** Shaikh Abdullah Waseem  
 **Release date:** 25 October 2026
 
 ## Overview
 
-This repository contains selected code, prediction-freeze metadata, aggregate results, and integrity records for a black-box empirical audit of whether reliability estimates from isolated operations predict exact success on composed tasks. Or simply, whether an AI can solve smaller pieces of puzzles with the exact success rate as when those pieces combine together for the complete artifact.
+This repository publishes selected analysis code, the primary prediction freeze, aggregate results, and verification records for a black-box empirical audit of whether reliability estimates from isolated operations predict exact success on composed tasks.
 
-The study evaluates parallel, sequential, conditional, and nested-conditional structures across two model aliases, `Model_A` and `Model_B`.
+The study evaluates parallel, sequential, conditional, and nested-conditional task structures across two endpoint aliases, `Model_A` and `Model_B`.
 
-## Main result
+## Main finding
 
-The atom-product law did not consistently outperform stronger baselines in the 192 composition predictions. Its Brier score (a suitable metric) was **0.134732**, compared with **0.123897** for the structure-specific baseline, **0.122706** for the operation-count baseline, and **0.125725** for the graph-corrected baseline. The task-cluster uncertainty interval for the product-law minus structure-specific-baseline Brier difference includes zero. These findings do **not** prove that every multiplicative reliability model is invalid.
+Across 192 composition predictions, the atom-product law had a Brier score of **0.134732**. The structure-specific baseline scored **0.123897**, the operation-count baseline **0.122706**, and the graph-corrected baseline **0.125725**. Lower Brier scores are better. The atom-product law therefore did not outperform these comparators in the pooled primary comparison. The task-family-clustered uncertainty interval for its Brier-score difference from the structure-specific baseline includes zero.
 
-## Repository map
+This is a bounded result for the tested task bank. It does not establish that every multiplicative reliability model is invalid.
 
-- **[Essential Data & Prediction Freeze](Essential%20Data%20%26%20Prediction%20Freeze/README.md):** selected 192-row prediction file and its SHA-256 sidecar. The analyzed workbook is intentionally not published.
-- **[Analysis Code](Analysis%20Code/):** primary pipeline, independent oracle/scoring audit, exploratory calibration-only comparator, post-hoc sensitivity script, and dependency file.
-- **[Results & Verification](Results%20%26%20Verification/README.md):** aggregate tables, model-by-structure results, bootstrap uncertainty, and integrity records.
-- **[SHA256SUMS.txt](SHA256SUMS.txt):** checksums for the listed public release files; the manifest intentionally does not hash itself.
+## Repository contents
+
+- **[Essential Data & Prediction Freeze](Essential%20Data%20%26%20Prediction%20Freeze/README.md):** selected 192-row prediction file and SHA-256 sidecar.
+- **[Analysis Code](Analysis%20Code/):** primary analysis pipeline, independent oracle/scoring audit, calibration-only comparator, post-hoc sensitivity diagnostics, and dependency list.
+- **[Results & Verification](Results%20%26%20Verification/README.md):** aggregate result tables, uncertainty intervals, and release-integrity records.
+- **[SHA256SUMS.txt](SHA256SUMS.txt):** SHA-256 checksums for the listed public files. The manifest does not hash itself.
 
 ## Data availability and reproduction
 
-The source workbook `C.R.A._raw_analysis_sheet` is **not included**, as intended by the researcher. It contains the original prompts, model responses, oracle values, and task-bank designs. To rerun the analysis scripts, the researcher must provide their own authorized link of the analyzed workbook matching the expected `Trial_Data`, `Gold_Oracle`, and (for the independent audit) `Task_Bank` sheets. The selected freeze included here can be used without regenerating it. Contact Researcher at helloquvanti@gmail.com. 
+The analyzed workbook, `C.R.A._raw_analysis_sheet`, is intentionally **not included** in this public repository. It is maintained separately by the researcher and contains prompts, raw model responses, oracle data, and task-bank designs. The analysis scripts require an authorized local copy with the expected `Trial_Data` and `Gold_Oracle` sheets; the independent audit also requires `Task_Bank`.
 
-Install dependencies from the repository root:
+The published prediction freeze can be inspected and its checksum verified without the workbook. Full scoring and oracle reconstruction cannot be reproduced from this repository alone.
+
+Install the dependencies from the repository root:
 
 ```bash
 python -m pip install -r "Analysis Code/C.R.A._requirements.txt"
 ```
 
-Using a private local workbook path, run the primary analysis (do not regenerate the freeze):
+Run the primary analysis using the separately held workbook and the published freeze (do not regenerate the historical freeze):
 
 ```bash
 python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" --outdir analysis_output
 ```
 
-Then run the independent audit:
+Run the independent oracle/scoring audit:
 
 ```bash
 python "Analysis Code/C.R.A._independent_audit_v2.py" "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --outdir independent_audit_outputs
 ```
 
-The calibration-only comparator requires the primary analysis output; the sensitivity script is post-hoc and should not replace the primary result. Exact commands and interpretation guardrails are documented in [Results & Verification/REPRODUCING.md](Results%20%26%20Verification/REPRODUCING.md).
+The calibration-only comparator and post-hoc sensitivity diagnostics are optional secondary analyses. Their exact commands and interpretation limits are documented in [Results & Verification/REPRODUCING.md](Results%20%26%20Verification/REPRODUCING.md).
+
+## Baselines and model fitting
+
+The graph-corrected comparator is a **logistic-regression analysis baseline**, fitted within leave-one-task-family-out cross-validation. Its inputs are the frozen atom-product probability (on the logit scale), active-node count, graph structure, and endpoint alias. Each held-out task family is excluded from fitting its corresponding prediction. This is ordinary statistical model fitting for a comparator; it is **not** a separately trained foundation model, a new AI system, or a model intended for deployment.
+
+The structure-specific, operation-count, and global baselines are empirical rate predictors calculated from the non-held-out composition families. The calibration-only pooled-operation comparator uses calibration rows only and is labelled exploratory/post-audit in the study documentation.
 
 ## Limitations and provenance
 
-1. The public repository does not include the raw/analyzed workbook, because it contains prompts, model outputs, oracle logic, and task-bank designs. Therefore users cannot rerun the complete pipeline from only this repository.
-2. Model endpoints are reported as `Model_A` and `Model_B`. Model A was Gemini 3 at Medium thinking depth; Model B was GPT-6 Luna at Fast mode. These settings are based on the researcher's account of the configurations used.
-3.  The workbook lacks row-level run timestamps and exact-version metadata, so freeze chronology and prospective preregistration cannot be independently established.
-4.   Calibration record `A0045` has a documented response anomaly; it is preserved in the primary analysis, with a separate post-hoc sensitivity check.
-5. The dataset includes 12 task families. Generalization beyond this task bank is unestablished.
-6. The result does **not** validate the candidate law; the primary Brier score is **worse** than the structure-specific and operation-count baselines.
+1. The source workbook is maintained separately and is not part of this public release. Consequently, the full pipeline cannot be rerun from the repository alone.
+2. The endpoint names `Model_A` and `Model_B` are aliases. The reported configurations were Gemini 3 at Medium thinking depth for Model A and GPT-6 at Fast mode for Model B, based on the researcher's account. Exact per-response provider/version metadata was not retained for every run.
+3. The workbook does not contain complete row-level run timestamps and exact-version metadata. The freeze checksum establishes file identity, not the chronology of freezing or prospective preregistration.
+4. Calibration record `A0045` has a documented response anomaly. It remains in the primary analysis; a separate post-hoc sensitivity analysis is provided.
+5. The study covers 12 task families. Generalization beyond this task bank has not been established.
+6. The primary result does not validate the candidate atom-product law; its pooled Brier score is worse than the structure-specific and operation-count baselines.
 
-## AI assistance
+## Researcher and AI-assistance statement
 
-ChatGPT assisted with methodological discussion, planning, code development/review, cross-checking calculations. The researcher conducted the experiment and remains responsible for the direction, methods, comments, interpretations, conclusions and presentation. AI assistance does not guarantee perfection 
+The researcher designed and conducted the experiment, ran and recorded the prompt trials, maintained the research workbook and annotations, managed calibration and composition phases, handled the prediction-freezing process, and is responsible for the analysis decisions, interpretation, and conclusions.
+
+ChatGPT was used as an assistance tool for methodological discussion, code drafting and review, checking calculations, and editorial refinement. The researcher reviewed and takes responsibility for the released code, results, and written claims. AI assistance is disclosed here and should not be interpreted as independent validation of the study.
 
 ## Citation
 
-Waseem, S. A. (2026). *Compositional Reliability Audit: Testing an Atom-Product Law for Exact Success on Structured Tasks* 
+Waseem, S. A. (2026). *Compositional Reliability Audit: Testing an Atom-Product Law for Exact Success on Structured Tasks*.
 
 ## Licensing
 
-- Python code: MIT License (`LICENSE`).
-- Researcher-authored documentation: CC BY 4.0 (`CONTENT_LICENSE.md`).
-- Empirical result tables and the prediction freeze are not granted a blanket reuse license by these code/documentation licenses; see the limits described in the result documentation.
+- Python analysis code: MIT License ([LICENSE](LICENSE)).
+- Researcher-authored documentation: CC BY 4.0 ([CONTENT_LICENSE.md](CONTENT_LICENSE.md)).
+- Empirical result tables and the prediction freeze are not granted a blanket reuse license by either notice. See [CONTENT_LICENSE.md](CONTENT_LICENSE.md) and [Supporting Release Scope](Results%20%26%20Verification/Supporting%20Release%20Scope.md).
 
-
-[Last updated: 10/26/2026]
