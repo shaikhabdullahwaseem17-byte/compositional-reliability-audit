@@ -12,8 +12,6 @@ import pandas as pd
 
 HERE=Path(__file__).resolve().parent
 PRIMARY=HERE/"C.R.A._analyze_compositional_reliability_v2.py"
-if not PRIMARY.exists():
-    PRIMARY=HERE/"C.R.O._analyze_compositional_reliability_v2.py"
 
 def load_primary():
     spec=importlib.util.spec_from_file_location("cra_primary",PRIMARY)
