@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Researcher attribution: Shaikh Abdullah Waseem.
 # Independent oracle/scoring audit. Read-only: does not edit the workbook.
-import json, csv, math, argparse
+import json, csv, argparse
 from collections import Counter, defaultdict
 from pathlib import Path
 import pandas as pd
