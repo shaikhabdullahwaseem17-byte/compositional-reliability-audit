@@ -6,7 +6,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 import pandas as pd
 ap=argparse.ArgumentParser(description="Independent oracle and strict-scoring audit")
-ap.add_argument("workbook", nargs="?", default="C.R.A._raw_analysis_sheet.xlsx")
+ap.add_argument("workbook", help="Path to the researcher-held analyzed workbook")
 ap.add_argument("--outdir", default="C.R.A._independent_audit_outputs")
 args=ap.parse_args()
 OUT=Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
@@ -148,10 +148,10 @@ for x in failures:
 print('FAILURE CATEGORIES',dict(Counter(x['category'] for x in failures)))
 print('MODEL_B FAILURE CATEGORIES',dict(Counter(x['category'] for x in failures if x['Model']=='Model_B')))
 # Save compact row-level independent scores and failure inventory.
-with open(OUT/'C.R.O._independent_row_scores.csv','w',newline='',encoding='utf-8') as f:
+with open(OUT/'C.R.A._independent_row_scores.csv','w',newline='',encoding='utf-8') as f:
  w=csv.writer(f);w.writerow(['Run_ID','Phase','Task_ID','Model','Structure','Operation_or_Graph','Schema_Valid','Node_Sequence_Correct','Step_Values_Correct','Final_Correct','Exact_Task_Success'])
  for s in scores:w.writerow([s['Run_ID'],s['Phase'],s['Task_ID'],s['Model'],s['Structure'],s['Op'],s['Schema'],s['Sequence'],s['StepValues'],s['Final'],s['Exact']])
-with open(OUT/'C.R.O._independent_failure_inventory.csv','w',newline='',encoding='utf-8') as f:
+with open(OUT/'C.R.A._independent_failure_inventory.csv','w',newline='',encoding='utf-8') as f:
  w=csv.writer(f);w.writerow(['Run_ID','Task_ID','Model','Structure','Failure_Category','First_Mismatch_Index','Expected_First_Mismatch_JSON','Actual_First_Mismatch_JSON','Raw_Prefix'])
  for x in failures:
   mm=x['first'] or {};w.writerow([x['Run_ID'],x['Task_ID'],x['Model'],x['Structure'],x['category'],mm.get('index'),json.dumps(mm.get('expected'),ensure_ascii=False),json.dumps(mm.get('actual'),ensure_ascii=False),x['raw_prefix']])
