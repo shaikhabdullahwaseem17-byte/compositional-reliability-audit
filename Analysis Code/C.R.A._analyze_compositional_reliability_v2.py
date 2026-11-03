@@ -88,12 +88,12 @@ def score_rows(merged):
         })
     return pd.DataFrame(scored)
 
-def frozen_predictions(merged, scored):
+def frozen_predictions(merged, scored, require_precollection=True):
     cal=merged[merged["Phase"]=="CALIBRATION"].copy()
     comp=merged[merged["Phase"]=="COMPOSITION"].copy()
     comp_sc=scored[scored["Phase"]=="COMPOSITION"].set_index("Run_ID")
     # Strict requirements: no composition responses may exist yet and every calibration row must have a response.
-    if comp["Raw_Response_Verbatim"].fillna("").astype(str).str.strip().ne("").any():
+    if require_precollection and comp["Raw_Response_Verbatim"].fillna("").astype(str).str.strip().ne("").any():
         raise ValueError("Freeze blocked: at least one composition raw-output cell is already filled. Predictions must be frozen before composition outputs are collected.")
     missing=cal["Raw_Response_Verbatim"].fillna("").astype(str).str.strip().eq("")
     if missing.any():
@@ -133,6 +133,33 @@ def frozen_predictions(merged, scored):
             "Prediction_Frozen_UTC":datetime.now(timezone.utc).isoformat(timespec="seconds")
         })
     return pd.DataFrame(predictions)
+
+def validate_frozen_predictions(merged, scored, frozen):
+    """Require the archived freeze to match calibration-derived workbook values."""
+    required = ["Run_ID", "Task_ID", "Model_Endpoint", "Structure", "Replicate", "P_JSON",
+                "Active_Node_Sequence", "P_Independence_Law", "Node_Types_Used",
+                "Calibration_Task_Families", "Calibration_Rows"]
+    missing = [column for column in required if column not in frozen.columns]
+    if missing: raise ValueError(f"Frozen prediction file is missing columns: {missing}")
+    archived = frozen.copy()
+    archived["Run_ID"] = archived["Run_ID"].astype(str).str.strip()
+    if archived["Run_ID"].duplicated().any(): raise ValueError("Frozen prediction file contains duplicate Run_ID values.")
+    composition_ids = set(merged.loc[merged["Phase"].eq("COMPOSITION"), "Run_ID"].astype(str))
+    if set(archived["Run_ID"]) != composition_ids: raise ValueError("Frozen prediction Run_ID set does not exactly match workbook composition rows.")
+    rebuilt = frozen_predictions(merged, scored, require_precollection=False).copy()
+    rebuilt["Run_ID"] = rebuilt["Run_ID"].astype(str).str.strip()
+    rebuilt = rebuilt.set_index("Run_ID")
+    archived = archived.set_index("Run_ID").loc[rebuilt.index]
+    for column in ["Task_ID", "Model_Endpoint", "Structure", "Active_Node_Sequence", "Node_Types_Used"]:
+        expected = rebuilt[column].fillna("").astype(str).to_numpy()
+        actual = archived[column].fillna("").astype(str).to_numpy()
+        if not np.array_equal(expected, actual): raise ValueError(f"Frozen prediction field {column} differs from workbook-derived values.")
+    for column in ["P_JSON", "P_Independence_Law", "Calibration_Task_Families", "Calibration_Rows"]:
+        expected = pd.to_numeric(rebuilt[column], errors="coerce").to_numpy(float)
+        actual = pd.to_numeric(archived[column], errors="coerce").to_numpy(float)
+        if not np.all(np.isclose(expected, actual, rtol=0.0, atol=1e-12, equal_nan=False)):
+            raise ValueError(f"Frozen prediction field {column} differs from workbook-derived estimates.")
+    return True
 
 def logit(p):
     p=np.clip(np.asarray(p,dtype=float),0.001,0.999)
@@ -277,6 +304,10 @@ def main():
     if not declared or declared != actual:
         raise SystemExit("Frozen prediction hash does not match its SHA-256 sidecar. The prediction file may have changed.")
     frozen=pd.read_csv(pred_path)
+    try:
+        validate_frozen_predictions(merged, scored, frozen)
+    except ValueError as exc:
+        raise SystemExit(f"Frozen prediction validation failed: {exc}") from exc
     # Validate row-level source/timing only when both metadata columns exist.
     metadata_auditable = ("Run_Date_Time" in merged.columns and "Exact_Model_Version" in merged.columns)
     if metadata_auditable:
