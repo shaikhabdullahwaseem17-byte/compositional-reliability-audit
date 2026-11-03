@@ -6,11 +6,11 @@ from pathlib import Path
 from collections import Counter,defaultdict
 import pandas as pd
 ap=argparse.ArgumentParser(description="Post-hoc A0045 and embedded-JSON sensitivity diagnostics")
-ap.add_argument("workbook", nargs="?", default="C.R.O._C.R.A._raw_analysis_sheet.xlsx")
-ap.add_argument("--predictions", default="C.R.O._Frozen_Predictions_workbook_matching.csv")
+ap.add_argument("workbook", nargs="?", default="C.R.A._raw_analysis_sheet.xlsx")
+ap.add_argument("--predictions", default="Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv")
 ap.add_argument("--outdir", default="C.R.O._sensitivity_outputs")
 args=ap.parse_args(); OUT=Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
-module_path=Path(__file__).with_name("C.R.O._analyze_compositional_reliability_v2.py")
+module_path=Path(__file__).with_name("C.R.A._analyze_compositional_reliability_v2.py")
 spec=importlib.util.spec_from_file_location("compositional_reliability_module", module_path)
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 current=str(Path(args.workbook)); _,_,cur=mod.read_book(current)
@@ -37,7 +37,7 @@ print('\nAS-FROZEN PRIMARY')
 print(summary_primary.to_string(index=False))
 print('primary Brier diff CI',ci_primary)
 
-# Post-hoc sensitivity only: restore A0045 to the original response preserved in rsrc.xlsx,
+# Post-hoc sensitivity only: restore A0045 to the earlier response preserved in the researcher's archived workbook,
 # keep all Model_B reset outputs and all composition outcomes exactly as collected.
 sens=cur.copy()
 sens.loc[sens.Run_ID.astype(str)==rowid,'Raw_Response_Verbatim']=old_raw
