@@ -6,8 +6,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 import pandas as pd
 ap=argparse.ArgumentParser(description="Independent oracle and strict-scoring audit")
-ap.add_argument("workbook", nargs="?", default="C.R.O._C.R.A._raw_analysis_sheet.xlsx")
-ap.add_argument("--outdir", default="C.R.O._independent_audit_outputs")
+ap.add_argument("workbook", nargs="?", default="C.R.A._raw_analysis_sheet.xlsx")
+ap.add_argument("--outdir", default="C.R.A._independent_audit_outputs")
 args=ap.parse_args()
 OUT=Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
 WB_PATH=Path(args.workbook)
