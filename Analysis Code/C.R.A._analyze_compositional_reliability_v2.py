@@ -91,7 +91,6 @@ def score_rows(merged):
 def frozen_predictions(merged, scored, require_precollection=True):
     cal=merged[merged["Phase"]=="CALIBRATION"].copy()
     comp=merged[merged["Phase"]=="COMPOSITION"].copy()
-    comp_sc=scored[scored["Phase"]=="COMPOSITION"].set_index("Run_ID")
     # Strict requirements: no composition responses may exist yet and every calibration row must have a response.
     if require_precollection and comp["Raw_Response_Verbatim"].fillna("").astype(str).str.strip().ne("").any():
         raise ValueError("Freeze blocked: at least one composition raw-output cell is already filled. Predictions must be frozen before composition outputs are collected.")
@@ -150,7 +149,7 @@ def validate_frozen_predictions(merged, scored, frozen):
     rebuilt["Run_ID"] = rebuilt["Run_ID"].astype(str).str.strip()
     rebuilt = rebuilt.set_index("Run_ID")
     archived = archived.set_index("Run_ID").loc[rebuilt.index]
-    for column in ["Task_ID", "Model_Endpoint", "Structure", "Active_Node_Sequence", "Node_Types_Used"]:
+    for column in ["Task_ID", "Model_Endpoint", "Structure", "Replicate", "Active_Node_Sequence", "Node_Types_Used"]:
         expected = rebuilt[column].fillna("").astype(str).to_numpy()
         actual = archived[column].fillna("").astype(str).to_numpy()
         if not np.array_equal(expected, actual): raise ValueError(f"Frozen prediction field {column} differs from workbook-derived values.")
