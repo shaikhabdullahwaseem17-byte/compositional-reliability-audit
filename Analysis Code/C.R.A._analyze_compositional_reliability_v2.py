@@ -13,7 +13,7 @@ Run from the repository root:
 
 Dependencies are listed in C.R.A._requirements.txt.
 """
-import argparse, json, math, hashlib, csv, sys
+import argparse, json, hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
