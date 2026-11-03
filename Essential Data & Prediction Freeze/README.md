@@ -1,8 +1,10 @@
-# Essential Data & Prediction Freeze
+# Essential Data and Prediction Freeze
 
-This folder contains the selected 192-row primary prediction freeze and its companion SHA-256 sidecar.
+This folder contains the selected 192-row prediction freeze used for the primary analysis and its SHA-256 sidecar.
 
-- `C.R.A._Frozen_Predictions_workbook_matching.csv` — selected primary predictions used for scoring.
-- `C.R.A._Frozen_Predictions_workbook_matching.sha256.txt` — freeze metadata and SHA-256 of the CSV.
+- `C.R.A._Frozen_Predictions_workbook_matching.csv` — archived predictions for the 192 composition runs.
+- `C.R.A._Frozen_Predictions_workbook_matching.sha256.txt` — archived digest and stated freeze timestamp.
 
-**The analyzed workbook is intentionally not included.** It contains prompts, raw model responses, oracle data, and task-bank designs. Do not replace the selected freeze with a newly generated one and call it the original. A checksum proves file identity, not when the predictions were frozen.
+The private analyzed workbook is not stored in this repository. The primary analysis recomputes calibration-derived estimates from that workbook and checks the published prediction file row by row. The alternate historical freeze is not part of this release and must not be substituted.
+
+A matching checksum confirms file identity. It does not, by itself, prove when the predictions were frozen relative to composition collection.
