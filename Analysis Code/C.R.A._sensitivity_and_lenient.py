@@ -6,7 +6,7 @@ from pathlib import Path
 from collections import Counter,defaultdict
 import pandas as pd
 ap=argparse.ArgumentParser(description="Post-hoc A0045 and embedded-JSON sensitivity diagnostics")
-ap.add_argument("workbook", nargs="?", default="C.R.A._raw_analysis_sheet.xlsx")
+ap.add_argument("workbook", help="Path to the researcher-held analyzed workbook")
 ap.add_argument("--predictions", default="Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv")
 ap.add_argument("--outdir", default="C.R.A._sensitivity_outputs")
 args=ap.parse_args(); OUT=Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
@@ -15,7 +15,10 @@ spec=importlib.util.spec_from_file_location("compositional_reliability_module", 
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 current=str(Path(args.workbook)); _,_,cur=mod.read_book(current)
 rowid='A0045'
-cur_raw=str(cur.loc[cur.Run_ID.astype(str)==rowid,'Raw_Response_Verbatim'].iloc[0])
+a0045=cur.loc[cur.Run_ID.astype(str)==rowid]
+if len(a0045)!=1:
+    raise SystemExit(f"Expected exactly one calibration record {rowid}; found {len(a0045)}.")
+cur_raw=str(a0045['Raw_Response_Verbatim'].iloc[0])
 # Exact matching response preserved in the earlier workbook, included here only for the labelled A0045 sensitivity.
 old_raw='{"steps":[{"node":"IS_EVEN_LENGTH","value":false}],"final":false}' 
 exp=json.loads(str(cur.loc[cur.Run_ID.astype(str)==rowid,'Expected_JSON'].iloc[0]))
