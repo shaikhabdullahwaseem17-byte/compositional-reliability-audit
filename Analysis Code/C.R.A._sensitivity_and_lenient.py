@@ -8,7 +8,7 @@ import pandas as pd
 ap=argparse.ArgumentParser(description="Post-hoc A0045 and embedded-JSON sensitivity diagnostics")
 ap.add_argument("workbook", nargs="?", default="C.R.A._raw_analysis_sheet.xlsx")
 ap.add_argument("--predictions", default="Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv")
-ap.add_argument("--outdir", default="C.R.O._sensitivity_outputs")
+ap.add_argument("--outdir", default="C.R.A._sensitivity_outputs")
 args=ap.parse_args(); OUT=Path(args.outdir); OUT.mkdir(parents=True, exist_ok=True)
 module_path=Path(__file__).with_name("C.R.A._analyze_compositional_reliability_v2.py")
 spec=importlib.util.spec_from_file_location("compositional_reliability_module", module_path)
@@ -72,7 +72,7 @@ P['Delta_P_sensitivity_minus_primary']=P['P_Independence_Law_Sensitivity']-P['P_
 P['Affected']=P['Delta_P_sensitivity_minus_primary'].abs()>1e-12
 print('rows with product-law prediction changed by restoring A0045:',int(P.Affected.sum()),'of',len(P))
 print('affected by model/structure:',P[P.Affected].groupby(['Model_Endpoint','Structure']).size().to_dict())
-P.to_csv(OUT/'C.R.O._posthoc_A0045_sensitivity_predictions.csv',index=False)
+P.to_csv(OUT/'C.R.A._posthoc_A0045_sensitivity_predictions.csv',index=False)
 
 # Lenient diagnostic: parse any balanced JSON object embedded inside an otherwise invalid response.
 def embedded_json_objects(s):
