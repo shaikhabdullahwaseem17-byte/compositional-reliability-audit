@@ -1,4 +1,5 @@
 {
+  "source_workbook_public": false,
   "trial_rows": 336,
   "gold_rows": 336,
   "unique_trial_run_ids": 336,
@@ -7,15 +8,20 @@
   "duplicate_trial_run_ids": 0,
   "duplicate_gold_run_ids": 0,
   "phase_counts": {
-    "COMPOSITION": 192,
-    "CALIBRATION": 144
+    "CALIBRATION": 144,
+    "COMPOSITION": 192
   },
   "model_counts": {
     "Model_A": 168,
     "Model_B": 168
   },
-  "comp_run_id_set_match_frozen": true,
+  "composition_run_id_set_match_frozen": true,
   "frozen_rows": 192,
   "frozen_unique_run_ids": 192,
-  "frozen_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21"
+  "frozen_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21",
+  "frozen_predictions_recomputed_from_calibration": true,
+  "row_level_run_timestamp_and_exact_model_version_columns_present": false,
+  "composition_exact_successes": 94,
+  "composition_exact_success_rate": 0.4895833333333333,
+  "validation_note": "Counts and freeze checks were generated from the researcher-held workbook. The workbook itself is not included in this repository."
 }
