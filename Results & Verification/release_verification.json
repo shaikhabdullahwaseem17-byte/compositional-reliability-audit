@@ -1,18 +1,39 @@
 {
   "release_name": "Compositional Reliability Audit — public supporting release",
-  "release_date": "2026-10-25",
+  "release_date": "2026-11-03",
+  "default_branch": "main",
   "primary_prediction_file": "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv",
   "primary_prediction_rows": 192,
   "primary_prediction_sha256": "0272c0f14e5a32ec366314ca68272034a355032bf6d32a58080dd4bbc1514a21",
   "source_workbook_in_public_repository": false,
-  "source_workbook_exclusion": "Explicitly excluded; retained by researcher outside the public repository.",
-  "alternate_historical_freeze_in_public_repository": false,
+  "raw_model_responses_in_public_repository": false,
   "raw_response_failure_inventory_in_public_repository": false,
-  "raw_response_filter_node_audit_in_public_repository": false,
+  "alternate_historical_freeze_in_public_repository": false,
+  "paper_pdf_or_docx_in_public_repository": false,
   "machine_specific_run_logs_in_public_repository": false,
-  "research_paper_pdf_or_docx_in_public_repository": false,
-  "zip_archive_in_public_repository": false,
-  "public_materials": "Analysis scripts, dependency list, selected prediction freeze, aggregate result tables and integrity records.",
-  "known_limitation": "The analysis scripts require a researcher-held, authorized analyzed workbook with the expected sheets/columns. That workbook is deliberately not published here.",
-  "freeze_hash_note": "SHA-256 verifies file identity; it does not prove freeze chronology or prospective preregistration."
+  "public_materials": "Analysis code, selected prediction freeze, aggregate result tables, integrity records, and documentation.",
+  "reproduction_requirement": "An authorized researcher-held workbook with Trial_Data, Gold_Oracle, and Task_Bank sheets is required to rerun the complete analysis and independent oracle audit.",
+  "known_provenance_limits": [
+    "The workbook does not retain row-level run timestamps.",
+    "The workbook does not retain exact per-response model-version identifiers.",
+    "A file hash verifies identity, not freeze chronology or prospective preregistration."
+  ],
+  "primary_validation": "Selected freeze probabilities were recomputed from calibration rows and matched row by row.",
+  "independent_oracle_audit": {
+    "trial_rows": 336,
+    "oracle_rows": 336,
+    "composition_input_mismatches": 0,
+    "oracle_mismatches": 0
+  },
+  "primary_outcomes": {
+    "composition_rows": 192,
+    "exact_successes": 94,
+    "atom_product_brier": 0.134732,
+    "structure_specific_brier": 0.123897,
+    "operation_count_brier": 0.122706,
+    "global_brier": 0.123551,
+    "graph_corrected_logistic_brier": 0.125725
+  },
+  "calibration_only_comparator": "Exploratory post-audit comparator; separate script and output tables.",
+  "posthoc_diagnostics": "A0045 restoration and embedded-JSON recovery are exploratory and do not replace the strict primary outcome."
 }
