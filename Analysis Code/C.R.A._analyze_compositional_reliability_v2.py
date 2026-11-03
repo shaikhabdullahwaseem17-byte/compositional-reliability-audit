@@ -1,14 +1,17 @@
-#!/usr/bin/env python3
-"""
-Analysis pipeline for the Compositional AI Reliability Law study.
-Researcher: Shaikh Abdullah Waseem. Attribution added for this reproduction copy; analysis logic preserved.
-Requires: pandas, openpyxl, numpy, scikit-learn.
-Usage:
-  python analyze_compositional_reliability.py WORKBOOK.xlsx --phase freeze
-  [archive Frozen_Predictions.csv before running composition trials]
-  python analyze_compositional_reliability.py WORKBOOK.xlsx --phase analyze --predictions Frozen_Predictions.csv
+"""Primary analysis pipeline for the Compositional Reliability Audit.
 
-The script never fabricates missing data and never edits the workbook.
+The script reads the researcher-held workbook without modifying it. In
+analysis mode it scores the collected responses and evaluates the archived
+prediction freeze. Freeze mode creates a new freeze before composition
+responses are collected; do not use it to recreate the historical published file.
+
+Run from the repository root:
+  python "Analysis Code/C.R.A._analyze_compositional_reliability_v2.py" \
+      "PATH/TO/YOUR_LOCAL_ANALYZED_WORKBOOK.xlsx" --phase analyze \
+      --predictions "Essential Data & Prediction Freeze/C.R.A._Frozen_Predictions_workbook_matching.csv" \
+      --outdir analysis_output
+
+Dependencies are listed in C.R.A._requirements.txt.
 """
 import argparse, json, math, hashlib, csv, sys
 from datetime import datetime, timezone
