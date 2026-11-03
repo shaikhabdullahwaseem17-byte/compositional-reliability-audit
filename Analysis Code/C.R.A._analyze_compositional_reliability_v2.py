@@ -140,7 +140,6 @@ def crossvalidated_predictions(scored, frozen):
     if comp["P_Independence_Law"].isna().any():
         raise ValueError("Frozen prediction file is missing composition Run_ID rows.")
     # Out-of-template structure-specific baseline and count-only baseline.
-    gold_counts = comp.groupby("Run_ID")["Expected_Node_Sequence"].first()
     # Node count from sequence field; nodes not containing " > " count as one.
     comp["Expected_Node_Count"] = comp["Expected_Node_Sequence"].fillna("").apply(lambda x: 0 if not str(x).strip() else len(str(x).split(" > ")))
     comp["P_Structure_BaseRate"] = np.nan
@@ -181,8 +180,13 @@ def crossvalidated_predictions(scored, frozen):
                 clf.fit(Xtr,train2["Exact_Task_Success"].astype(int))
                 pred=clf.predict_proba(Xte)[:,1]
                 comp.loc[test_idx2,"P_GraphCorrected_CV"]=np.clip(pred,0.001,0.999)
-            except Exception:
-                pass
+            except Exception as exc:
+                raise RuntimeError(
+                    f"Graph-corrected logistic baseline failed for held-out Task_ID={heldout!r}"
+                ) from exc
+    if comp["P_GraphCorrected_CV"].isna().any():
+        missing = int(comp["P_GraphCorrected_CV"].isna().sum())
+        raise RuntimeError(f"Graph-corrected baseline produced {missing} missing predictions.")
     return comp
 
 def metric_summary(comp):
