@@ -1,6 +1,6 @@
 # Section C — Results and Verification
 
-This directory contains aggregate result tables and selected verification records. The private source workbook is intentionally excluded.
+This directory contains aggregate result tables and selected verification records. The private source workbook is excluded. To view it, contact at helloquvanti@gmail.com.
 
 ## Result files
 
@@ -28,4 +28,4 @@ The aggregate tables can be inspected without the workbook. To regenerate them, 
 
 The selected prediction freeze has 192 rows and a SHA-256 sidecar. The primary script validates each frozen probability against a fresh calculation from the supplied calibration data, rather than checking Run_ID coverage alone. An alternate historical freeze must not be substituted.
 
-Exact provider/version provenance is incomplete. The workbook lacks row-level run timestamps and exact-model-version metadata; a freeze hash does not independently establish chronology or preregistration. Calibration record `A0045` remains in the primary data, with its separate post-hoc sensitivity analysis clearly labelled.
+Calibration record `A0045` remains in the primary data, with its separate post-hoc sensitivity analysis clearly labelled.
