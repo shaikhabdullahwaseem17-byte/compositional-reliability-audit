@@ -6,9 +6,9 @@
 
 ## Overview
 
-This repository publishes selected analysis code, the selected 192-row prediction freeze, aggregate results, and verification records for a black-box empirical audit of whether reliability estimates from isolated operations predict exact success on composed tasks.
+This repository publishes selected analysis code, the selected 192-row prediction freeze, aggregate results, and verification records for a black-box empirical audit of whether reliability estimates from isolated operations predict exact success on composed tasks. Or In simpler words, whether an AI can solve pieces of a puzzle with the same success rate as when those pieces are combined in one, big puzzle.
 
-The study covers parallel, sequential, conditional, and nested-conditional task structures across two endpoint aliases, `Model_A` and `Model_B`.
+The study covers parallel, sequential, conditional, and nested-conditional task structures across two endpoint aliases, `Model_A` and `Model_B`. Model_A being Gemini 3 flash at medium thinking level and Model_B being GPT-6 Luna. 
 
 ## Main result
 
@@ -59,3 +59,13 @@ Waseem, S. A. (2026). *Can Isolated-Operation Reliability Predict Compositional 
 - Python analysis code: MIT License ([LICENSE](LICENSE)).
 - Researcher-authored documentation: CC BY 4.0 ([CONTENT_LICENSE.md](CONTENT_LICENSE.md)).
 - Empirical result tables and prediction freeze are not granted a blanket reuse license by either notice. See [CONTENT_LICENSE.md](CONTENT_LICENSE.md) and [Supporting Release Scope](Results%20%26%20Verification/Supporting%20Release%20Scope.md).
+
+
+
+## Enquiries & Feedback:
+Would be much appreciated
+Contact at helloquvanti@gmail.com
+
+
+
+[Last updated: November/08/2026]
